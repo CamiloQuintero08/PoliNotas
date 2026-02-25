@@ -1,11 +1,12 @@
-import Header from "@/components/Header";
-import HeroSection from "@/components/HeroSection";
-import SideBar from "@/components/SideBar";
-import MainContent from "@/components/MainContent";
+import Header from "@/components/layout/Header";
+import HeroSection from "@/components/content/HeroSection";
+import SideBar from "@/components/layout/SideBar";
+import MainContent from "@/components/content/MainContent";
+import Recomendation from "@/components/content/Recomendation";
 
 export default function Home() {
   return (
-    <div className="bg-slate-200">
+    <div>
       <Header />
 
       <SideBar />
@@ -18,8 +19,9 @@ export default function Home() {
         <MainContent />
       </section>
 
-      
-
+      <section>
+        <Recomendation />
+      </section>
     </div>
   );
 }
