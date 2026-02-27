@@ -18,12 +18,9 @@ export default function Recomendation() {
   return (
     <section className="relative py-24 px-4 lg:px-12 overflow-hidden">
 
-      {/* ── FONDO EXTERIOR CLARO Y DINÁMICO ── */}
 
-      {/* Base clara */}
       <div className="absolute inset-0 bg-gray-50" />
 
-      {/* Gradiente de atmósfera */}
       <div
         className="absolute inset-0"
         style={{
@@ -33,7 +30,6 @@ export default function Recomendation() {
         }}
       />
 
-      {/* Malla de líneas tipo "circuito" */}
       <div
         className="absolute inset-0 opacity-[0.08]"
         style={{
@@ -45,33 +41,29 @@ export default function Recomendation() {
         }}
       />
 
-      {/* Orbe verde izquierda */}
       <div
-        className="absolute -left-40 top-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full pointer-events-none"
+        className="absolute -left-40 top-1/2 -translate-y-1/2 w-105 h-105 rounded-full pointer-events-none"
         style={{
           background: "radial-gradient(circle, #bbf7d0, transparent 70%)",
           animation: "floatA 10s ease-in-out infinite",
         }}
       />
 
-      {/* Orbe amarillo derecha */}
       <div
-        className="absolute -right-40 top-1/4 w-[320px] h-[320px] rounded-full pointer-events-none"
+        className="absolute -right-40 top-1/4 w-[320px] h-80 rounded-full pointer-events-none"
         style={{
           background: "radial-gradient(circle, #fde68a, transparent 70%)",
           animation: "floatB 13s ease-in-out infinite",
         }}
       />
 
-      {/* Orbe verde claro centro-abajo */}
       <div
-        className="absolute left-1/2 -translate-x-1/2 bottom-0 w-[500px] h-[200px] pointer-events-none"
+        className="absolute left-1/2 -translate-x-1/2 bottom-0 w-125 h-50 pointer-events-none"
         style={{
           background: "radial-gradient(ellipse, #d1fae5, transparent 70%)",
         }}
       />
 
-      {/* Partículas decorativas */}
       {[
         { top: "12%", left: "8%",  size: 5, delay: "0s",   color: "#16a34a" },
         { top: "70%", left: "15%", size: 3, delay: "1.5s", color: "#ca8a04" },
@@ -95,7 +87,6 @@ export default function Recomendation() {
         />
       ))}
 
-      {/* ── CARD CENTRAL ── */}
       <div
         ref={ref}
         className="relative z-10 overflow-hidden rounded-3xl mx-auto max-w-8xl shadow-2xl shadow-green-200/60"
@@ -105,7 +96,6 @@ export default function Recomendation() {
           transition: "opacity 0.7s ease, transform 0.7s ease",
         }}
       >
-        {/* Fondo del card con gradiente animado */}
         <div
           className="absolute inset-0"
           style={{
@@ -115,7 +105,6 @@ export default function Recomendation() {
           }}
         />
 
-        {/* Patrón de puntos sobre el card */}
         <div
           className="absolute inset-0 opacity-10"
           style={{
@@ -124,7 +113,6 @@ export default function Recomendation() {
           }}
         />
 
-        {/* Orbes del card */}
         <div
           className="absolute -top-20 -left-20 w-72 h-72 rounded-full opacity-20 pointer-events-none"
           style={{ background: "radial-gradient(circle, #fff, transparent 70%)", animation: "pulse 6s ease-in-out infinite" }}
@@ -134,10 +122,8 @@ export default function Recomendation() {
           style={{ background: "radial-gradient(circle, #fde047, transparent 70%)", animation: "pulse 9s ease-in-out infinite reverse" }}
         />
 
-        {/* Contenido del card */}
         <div className="relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-16 p-8 lg:p-16">
 
-          {/* Texto */}
           <div
             className="flex-1 text-center lg:text-left"
             style={{
@@ -157,7 +143,7 @@ export default function Recomendation() {
               <span className="relative inline-block">
                 todos tus trabajos
                 <span
-                  className="absolute bottom-1 left-0 h-[3px] rounded-full bg-yellow-300"
+                  className="absolute bottom-1 left-0 h-0.75 rounded-full bg-yellow-300"
                   style={{
                     width: visible ? "100%" : "0%",
                     transition: "width 0.8s ease",
@@ -169,7 +155,7 @@ export default function Recomendation() {
             </h2>
 
             <p className="mt-6 text-white/80 text-base lg:text-lg leading-relaxed max-w-md mx-auto lg:mx-0">
-              La puntualidad es clave para tu rendimiento. Con PoliApoyo puedes hacer seguimiento de tus entregas y nunca perder una fecha importante.
+              La puntualidad es clave para tu rendimiento. Con <span className="font-bold underline">PoliNotas</span> puedes hacer seguimiento de tus entregas y nunca perder una fecha importante.
             </p>
 
             <div className="flex flex-wrap gap-6 mt-8 justify-center lg:justify-start">
@@ -185,7 +171,6 @@ export default function Recomendation() {
             </div>
           </div>
 
-          {/* Imagen */}
           <div
             className="flex-1 flex justify-center lg:justify-end"
             style={{
@@ -197,7 +182,7 @@ export default function Recomendation() {
           >
             <div className="relative">
               <div className="absolute -inset-3 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20" />
-              <div className="absolute -inset-1 rounded-xl bg-gradient-to-br from-yellow-300/30 to-transparent" />
+              <div className="absolute -inset-1 rounded-xl bg-linear-to-br from-yellow-300/30 to-transparent" />
               <img
                 src="/images/MainContentImage.webp"
                 alt="Estudiantes"

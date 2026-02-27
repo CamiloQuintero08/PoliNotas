@@ -1,0 +1,116 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider  = "postgresql"  
+}
+
+model Profile {
+  id         String   @id
+  nombre     String
+  apellido   String
+  avatarUrl  String?  @map("avatar_url")
+  rol        Rol
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  cursosComoProfesor   Curso[]           @relation("ProfesorCursos")
+  gruposComoEstudiante GrupoEstudiante[]
+  notasComoEstudiante  Nota[]            @relation("EstudianteNotas")
+
+  @@map("profiles")
+}
+
+enum Rol {
+  profesor
+  estudiante
+}
+
+model Curso {
+  id          String   @id @default(cuid())
+  nombre      String
+  descripcion String?
+  codigo      String   @unique
+  profesorId  String   @map("profesor_id")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  profesor     Profile      @relation("ProfesorCursos", fields: [profesorId], references: [id])
+  grupos       Grupo[]
+  evaluaciones Evaluacion[]
+
+  @@map("cursos")
+}
+
+model Grupo {
+  id        String   @id @default(cuid())
+  nombre    String
+  cursoId   String   @map("curso_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  curso       Curso             @relation(fields: [cursoId], references: [id], onDelete: Cascade)
+  estudiantes GrupoEstudiante[]
+  notas       Nota[]
+
+  @@map("grupos")
+}
+
+model GrupoEstudiante {
+  grupoId      String   @map("grupo_id")
+  estudianteId String   @map("estudiante_id")
+  joinedAt     DateTime @default(now()) @map("joined_at")
+
+  grupo      Grupo   @relation(fields: [grupoId], references: [id], onDelete: Cascade)
+  estudiante Profile @relation(fields: [estudianteId], references: [id], onDelete: Cascade)
+
+  @@id([grupoId, estudianteId])
+  @@map("grupo_estudiantes")
+}
+
+model Evaluacion {
+  id          String         @id @default(cuid())
+  nombre      String
+  descripcion String?
+  tipo        TipoEvaluacion
+  porcentaje  Float
+  fechaLimite DateTime?      @map("fecha_limite")
+  cursoId     String         @map("curso_id")
+  archivoUrl  String?        @map("archivo_url")
+  createdAt   DateTime       @default(now()) @map("created_at")
+  updatedAt   DateTime       @updatedAt @map("updated_at")
+
+  curso Curso  @relation(fields: [cursoId], references: [id], onDelete: Cascade)
+  notas Nota[]
+
+  @@map("evaluaciones")
+}
+
+enum TipoEvaluacion {
+  parcial
+  final
+  taller
+  quiz
+  proyecto
+}
+
+model Nota {
+  id           String   @id @default(cuid())
+  valor        Float
+  comentario   String?
+  respuesta    String?
+  estudianteId String   @map("estudiante_id")
+  evaluacionId String   @map("evaluacion_id")
+  grupoId      String   @map("grupo_id")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  estudiante Profile    @relation("EstudianteNotas", fields: [estudianteId], references: [id])
+  evaluacion Evaluacion @relation(fields: [evaluacionId], references: [id], onDelete: Cascade)
+  grupo      Grupo      @relation(fields: [grupoId], references: [id])
+
+  @@unique([estudianteId, evaluacionId])
+  @@map("notas")
+}

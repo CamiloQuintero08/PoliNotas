@@ -11,7 +11,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <div className="pt-16 min-h-screen bg-amber-50/70 flex items-center justify-center overflow-hidden relative">
+    <div className="pt-16 min-h-screen bg-amber-50/70 flex items-center justify-center overflow-hidden relative my-5">
 
       <div
         className="absolute inset-0 opacity-[0.04]"
@@ -25,7 +25,7 @@ export default function HeroSection() {
       />
 
       <div
-        className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full opacity-10"
+        className="absolute -top-32 -right-32 w-125 h-125 rounded-full opacity-10"
         style={{
           background: "radial-gradient(circle, var(--color-fg-brand, #00FF00), transparent 70%)",
           animation: "pulse 6s ease-in-out infinite",
@@ -33,7 +33,7 @@ export default function HeroSection() {
       />
 
       <div
-        className="absolute -bottom-32 -left-32 w-[400px] h-[400px] rounded-full opacity-10"
+        className="absolute -bottom-32 -left-32 w-100 h-100 rounded-full opacity-10"
         style={{
           background: "radial-gradient(circle, var(--color-fg-brand, #DFF000), transparent 70%)",
           animation: "pulse 8s ease-in-out infinite reverse",
